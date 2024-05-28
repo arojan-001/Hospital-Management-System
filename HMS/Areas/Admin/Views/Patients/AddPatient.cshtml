@@ -1,0 +1,160 @@
+﻿@model HMS.Models.ViewModels.AdminViewModels
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var title = "Add New Patient";
+
+    if(Model.Patients.Id != 0)
+    {
+        ViewData["Title"] = "Update Patient";
+    }
+    else
+    {
+        ViewData["Title"] = "Add New Patient";
+    }
+}
+
+<form method="post" asp-action="AddPatient" enctype="multipart/form-data" class="cus-border bg-light rounded">
+    <div class="row col-12">
+        <div class="col-9">
+
+            @if (Model.Patients.Id != 0)
+            {
+                <input type="hidden" asp-for="@Model.Patients.Id" />
+                title = "Update Patient";
+            }
+
+            <div class="row justify-content-center">
+                <h3 class="pt-2">@title</h3>
+            </div>
+            <hr class="w-75" />
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label asp-for="@Model.Patients.Name"></label>
+                </div>
+                <div class="col-7">
+                    <input asp-for="@Model.Patients.Name" class="form-control" />
+                    <span asp-validation-for="@Model.Patients.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label asp-for="@Model.Patients.Gender"></label>
+                </div>
+                <div class="col-7">
+                    <input asp-for="@Model.Patients.Gender" class="form-control" />
+                    <span asp-validation-for="@Model.Patients.Gender" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label asp-for="@Model.Patients.ImageUrl"></label>
+                </div>
+                <div class="col-7">
+                    <input type="file" name="files" id="uploadBox" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label asp-for="@Model.Patients.Mobile"></label>
+                </div>
+                <div class="col-7">
+                    <input asp-for="@Model.Patients.Mobile" class="form-control" />
+                    <span asp-validation-for="@Model.Patients.Mobile" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label asp-for="@Model.Patients.ICompany"></label>
+                </div>
+                <div class="col-7">
+                    <input asp-for="@Model.Patients.ICompany" class="form-control" />
+                    <span asp-validation-for="@Model.Patients.ICompany" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label asp-for="@Model.Patients.INo"></label>
+                </div>
+                <div class="col-7">
+                    <input asp-for="@Model.Patients.INo" class="form-control" />
+                    <span asp-validation-for="@Model.Patients.INo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+
+                @if (Model.Patients.Id != 0)
+                {
+                    <div class="col-3">
+                        <button type="submit" asp-route-Id="@Model.Patients.Id" onclick="return validateInput()" class="btn btn-primary form-control text-white">Update</button>
+                    </div>
+                    <div class="col-3">
+                        <a asp-action="Index" class="btn btn-secondary text-white form-control">Back to List</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary form-control text-white">Create</button>
+                    </div>
+                    <div class="col-3">
+                        <a asp-action="Index" class="btn btn-secondary text-white form-control">Back to List</a>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+        <div class="col-3">
+
+            @if (Model.Patients.Id != 0)
+            {
+                <br />
+                <img src="@Model.Patients.ImageUrl" class="img-thumbnail" />
+            }
+
+        </div>
+    </div>
+</form>
+
+@section Scripts{ 
+    <script>
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                swal("Error", "Please Select an Image!", "error")
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+    <style>
+        .cus-border {
+            border: 2px solid #004481;
+        }
+
+        hr {
+            border-color: black;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        input[type=text] {
+            border-color: #0094ff;
+        }
+
+        input[type=file] {
+            border-color: #0094ff;
+        }
+    </style>
+}

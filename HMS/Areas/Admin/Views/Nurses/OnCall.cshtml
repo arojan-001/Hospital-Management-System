@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "On Calls List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cus-border bg-light rounded">
+    <div class="row p-1">
+        <div class="col-6">
+            <h3 class="pl-2">On Call's List</h3>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="AddOnCall" class="btn btn-primary text-white">
+                <i class="fas fa-plus"></i> &nbsp; New On Call
+            </a>
+        </div>
+        <hr class="w-75" />
+    </div>
+    <br />
+    <table id="tblData" class="table table-striped table-bordered pl-1 pr-1" style="width:100%">
+        <thead>
+            <tr>
+                <th>Sr.No.</th>
+                <th>Room No</th>
+                <th>Nurse Name</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/oncall.js"></script>
+    <style>
+        .cus-border {
+            border: 2px solid #004481;
+        }
+
+        hr {
+            border-color: black;
+        }
+    </style>
+}

@@ -1,0 +1,85 @@
+﻿@model HMS.Models.Perscribtion
+@{
+    ViewData["Title"] = "Perscription Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-6 text-white">
+                <h3>Perscription ID: @Model.Id</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-light">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3">
+                    <label>Doctor Name</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Doctors.Name</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Patients Name</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Patients.Name</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Medication Code</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.MedicationId</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Medication Name</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Medication.Name</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Date</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Date</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label asp-for="@Model.Details"></label>
+                </div>
+                <div class="col-9">
+                    <p>@Html.Raw(Model.Details)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-dark">
+        <div class="row">
+            <div class="col-3">
+                <a asp-action="AddPerscription" asp-route-Id="@Model.Id" class="btn btn-outline-primary text-white form-control">Update</a>
+            </div>
+            <div class="col-3">
+                <a asp-action="Index" class="btn btn-outline-secondary text-white form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <style>
+        label {
+            font-weight: 500;
+        }
+    </style>
+}

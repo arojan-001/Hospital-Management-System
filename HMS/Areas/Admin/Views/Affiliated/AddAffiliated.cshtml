@@ -1,0 +1,81 @@
+﻿@model HMS.Models.ViewModels.AdminViewModels
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var title = "Add New Affiliated With";
+
+    if (Model.Affiliated.Id != 0)
+    {
+        ViewData["Title"] = "Update Affiliated With";
+    }
+    else
+    {
+        ViewData["Title"] = "Add New Affiliated With";
+    }
+}
+
+<div class="container bg-white">
+    <div class="col-6 m-0 m-auto bg-light rounded cus-border">
+        <form method="post" asp-action="AddAffiliated" class="col-12">
+
+            @if (Model.Affiliated.Id != 0)
+            {
+                <input type="hidden" asp-for="@Model.Affiliated.Id" />
+                title = "Update Affiliated With";
+            }
+
+            <div class="row justify-content-center">
+                <h3 class="pt-2">@title</h3>
+            </div>
+            <hr class="w-75" />
+
+            <div class="row form-group">
+                <div class="col-4">
+                    <label>Doctor Name</label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(i => i.Affiliated.DoctorId, Model.DoctorsList, "Select Doctor Name", new { @class = "form-control", @style = "border-color:#0094ff" })
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-4">
+                    <label>Department Name</label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(i => i.Affiliated.DepartmentId, Model.DepartmentsList, "Select Department Name", new { @class = "form-control", @style = "border-color:#0094ff" })
+                </div>
+            </div>
+
+            <div class="row form-group">
+
+                @if (Model.Affiliated.Id != 0)
+                {
+                    <partial name="_EditAndBackBtn" model="@Model.Affiliated.Id" />
+                }
+                else
+                {
+                    <partial name="_CreateAndBackBtn" />
+                }
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <style>
+        .cus-border {
+            border: 2px solid #004481;
+        }
+
+        hr {
+            border-color: black;
+        }
+
+        label {
+            font-weight: 500;
+        }
+    </style>
+}

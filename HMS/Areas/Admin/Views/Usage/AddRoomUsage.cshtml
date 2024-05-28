@@ -1,0 +1,105 @@
+﻿@model HMS.Models.ViewModels.AdminViewModels
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var title = "Add New Room Usage";
+
+    if(Model.Usage.Id != 0)
+    {
+        ViewData["Title"] = "Update Room Usage";
+    }
+    else
+    {
+        ViewData["Title"] = "Add New Room Usage";
+    }
+}
+
+<div class="container">
+    <div class="col-6 m-0 m-auto cus-border bg-light rounded">
+        <form method="post" asp-action="AddRoomUsage" class="col-12">
+
+            @if (Model.Usage.Id != 0)
+            {
+                <input type="hidden" asp-for="@Model.Usage.Id" />
+                title = "Update Room Usage";
+            }
+
+            <div class="row justify-content-center">
+                <h3 class="pt-2">@title</h3>
+            </div>
+            <hr class="w-75" />
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label>Room No</label>
+                </div>
+                <div class="col-9">
+                    @Html.DropDownListFor(i => i.Usage.RoomId, Model.RoomsList, "Select Room No", new { @class = "form-control", @style = "border-color:#0094ff" })
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label>Patient Name</label>
+                </div>
+                <div class="col-9">
+                    @Html.DropDownListFor(i => i.Usage.PatientId, Model.PatientsList, "Select Patient Name", new { @class = "form-control", @style = "border-color:#0094ff" })
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label asp-for="@Model.Usage.SDate"></label>
+                </div>
+                <div class="col-9">
+                    <input asp-for="@Model.Usage.SDate" class="form-control" />
+                    <span asp-validation-for="@Model.Usage.SDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3">
+                    <label asp-for="@Model.Usage.EDate"></label>
+                </div>
+                <div class="col-9">
+                    <input asp-for="@Model.Usage.EDate" class="form-control" />
+                    <span asp-validation-for="@Model.Usage.EDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                
+                @if(Model.Usage.Id != 0)
+                {
+                    <partial name="_EditAndBackBtn" model="@Model.Usage.Id" />
+                }
+                else
+                {
+                    <partial name="_CreateAndBackBtn" />
+                }
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts{ 
+    <style>
+        .cus-border {
+            border: 2px solid #004481;
+        }
+
+        hr {
+            border-color: black;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        input[type=datetime] {
+            border-color: #0094ff;
+        }
+    </style>
+}

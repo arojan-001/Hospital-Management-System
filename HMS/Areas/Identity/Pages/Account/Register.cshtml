@@ -1,0 +1,142 @@
+﻿@page
+@model RegisterModel
+@using HMS.Utility
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container">
+    <div class="col-12 m-0 m-auto cus-border rounded bg-light">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="col-12">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="row justify-content-center">
+                <h3 class="pt-1">Register New User</h3>
+            </div>
+            <hr class="w-75" />
+
+            <div class="row form-group justify-content-between">
+                <div class="col-6 row">
+                    <div class="col-4">
+                        <label asp-for="Input.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Name" class="form-control" />
+                        <span asp-validation-for="Input.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6 row">
+                    <div class="col-4">
+                        <label asp-for="Input.Email"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row form-group justify-content-between">
+                <div class="col-6 row">
+                    <div class="col-4">
+                        <label asp-for="Input.Password"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6 row">
+                    <div class="col-4">
+                        <label asp-for="Input.ConfirmPassword"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row form-group justify-content-between">
+                <div class="col-6 row">
+                    <div class="col-4">
+                        <label asp-for="Input.PhoneNumber"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6 row">
+                    <div class="col-4">
+                        <label>User Role</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="radio" name="rdUserRole" value="@SD.Admin" /> &nbsp; @SD.Admin
+                        &nbsp;
+                        <input type="radio" name="rdUserRole" value="@SD.Manager" /> &nbsp; @SD.Manager
+                        &nbsp;
+                        <input type="radio" name="rdUserRole" value="@SD.Employee" checked /> &nbsp; @SD.Employee
+                    </div>
+                </div>
+            </div>
+
+            <div class="row form-group justify-content-between">
+                <div class="col-6 row">
+                    <div class="col-4">
+                        <label asp-for="Input.Address"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.Address" class="form-control" />
+                        <span asp-validation-for="Input.Address" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6 row">
+                    <div class="col-4">
+                        <label asp-for="Input.City"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Input.City" class="form-control" />
+                        <span asp-validation-for="Input.City" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row form-group pb-1 justify-content-center">
+                <div class="col-3 pb-2">
+                    <button type="submit" class="btn btn-primary form-control">Register</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <style>
+        .cus-border {
+            border: 2px solid #004481;
+        }
+
+        hr {
+            border-color: black;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        input[type=text] {
+            border-color: black;
+        }
+
+        input[type=password] {
+            border-color: black;
+        }
+
+        input[type=email] {
+            border-color: black;
+        }
+    </style>
+}

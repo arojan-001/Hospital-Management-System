@@ -1,0 +1,107 @@
+﻿@model HMS.Models.Undergoes
+@{
+    ViewData["Title"] = "Undergoes Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header bg-dark">
+        <div class="row text-white">
+            <div class="col-6">
+                <h3>Undergoes ID: @Model.Id</h3>
+            </div>
+            <div class="col-6">
+                <h3>Patient ID: @Model.PatientId</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-light">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3">
+                    <label>Patient Name</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Patients.Name</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Doctor Name</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Doctors.Name</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Nurse Name</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Nurses.Name</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Room ID</label>
+                </div>
+                <div class="col-9">
+                    @if (Model.Usage.PatientId == Model.PatientId)
+                    {
+                        <p>@Model.Usage.RoomId</p>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Usage Start Date</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Usage.SDate</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Usage End Date</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Usage.EDate</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Procedure</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Procedure.Name</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Date of Procedure</label>
+                </div>
+                <div class="col-9">
+                    <p>@Model.Date</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-dark">
+        <div class="row">
+            <div class="col-3">
+                <a asp-action="AddUndergoes" asp-route-Id="@Model.Id" class="btn btn-outline-primary text-white form-control">Update</a>
+            </div>
+            <div class="col-3">
+                <a asp-action="Index" class="btn btn-outline-secondary text-white form-control">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <style>
+        label {
+            font-weight: 500;
+        }
+    </style>
+}

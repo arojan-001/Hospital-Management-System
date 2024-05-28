@@ -1,0 +1,91 @@
+﻿@model HMS.Models.ViewModels.AdminViewModels
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var title = "Add New Procedure";
+
+    if (Model.Procedure.Id != 0)
+    {
+        ViewData["Title"] = "Update Procedure";
+    }
+    else
+    {
+        ViewData["Title"] = "Add New Procedure";
+    }
+}
+
+<div class="container bg-white">
+    <div class="col-6 m-0 m-auto bg-light rounded cus-border">
+        <form method="post" asp-action="AddProcedure" class="col-12">
+
+            @if (Model.Procedure.Id != 0)
+            {
+                <input type="hidden" asp-for="@Model.Procedure.Id" />
+                title = "Update Procedure";
+            }
+
+            <div class="row justify-content-center">
+                <h3 class="pt-2">@title</h3>
+            </div>
+            <hr class="w-75" />
+
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Procedure.Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="@Model.Procedure.Name" class="form-control" />
+                    <span asp-validation-for="@Model.Procedure.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-4">
+                    <label asp-for="@Model.Procedure.Price"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="@Model.Procedure.Price" class="form-control" placeholder="$" />
+                    <span asp-validation-for="@Model.Procedure.Price" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row form-group">
+
+                @if (Model.Procedure.Id != 0)
+                {
+                    <partial name="_EditAndBackBtn" model="@Model.Procedure.Id" />
+                }
+                else
+                {
+                    <partial name="_CreateAndBackBtn" />
+                }
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <style>
+        .cus-border {
+            border: 2px solid #004481;
+        }
+
+        hr {
+            border-color: black;
+        }
+
+        input[type=text] {
+            border-color: black;
+        }
+
+        input[type=number] {
+            border-color: black;
+        }
+
+        label {
+            font-weight: 500;
+        }
+    </style>
+}
